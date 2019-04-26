@@ -1,6 +1,6 @@
-var baseWebpackConfig = require('./webpack.base.config');
-var merge = require('webpack-merge');
-var path = require('path');
+const baseWebpackConfig = require('./webpack.base.config');
+const merge = require('webpack-merge');
+const path = require('path');
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
@@ -9,12 +9,19 @@ function resolve (dir) {
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
   devServer: {
-    host: 'zymfe.com',
-    inline: true,
+    host: '127.0.0.1',
+    inline: false,
     port: 8080,
     progress: true,
-    contentBase: resolve('dist'),
+    contentBase: resolve('./'),
     compress: true,
-    disableHostCheck: true
+    disableHostCheck: true,
+    proxy: {
+      "/sdk/static": {
+        target: 'http://localhost:8080',
+        pathRewrite: {'^/sdk/static' : '/static'},
+        changeOrigin: true
+      }
+    }
   }
 });

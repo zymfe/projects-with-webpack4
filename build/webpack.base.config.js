@@ -1,15 +1,15 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
 }
 
 module.exports = {
-  entry: resolve('src/page/sdk_20190426_v0.0.1.js'),
+  entry: resolve('src/page/index.js'),
   output: {
-    filename: 'sdk_20190426_v0.0.1.js',
+    filename: 'index.js',
     path: resolve('dist/')
   },
   resolve: {

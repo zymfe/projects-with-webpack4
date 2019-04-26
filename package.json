@@ -1,14 +1,14 @@
 {
-  "name": "test",
+  "name": "test-webpack4",
   "version": "1.0.0",
-  "description": "webpack4 代码测试",
+  "description": "test-webpack4",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.config.js",
     "build": "webpack --config build/webpack.prod.config.js"
   },
   "author": "https://github.com/zymfe",
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
@@ -16,6 +16,7 @@
     "autoprefixer": "^9.5.1",
     "babel-loader": "^8.0.5",
     "babel-preset-es2015": "^6.24.1",
+    "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^2.1.1",
     "ejs-loader": "^0.3.3",
     "html-webpack-plugin": "^3.2.0",
