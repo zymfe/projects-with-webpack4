@@ -1,6 +1,6 @@
-const baseWebpackConfig = require('./webpack.base.config');
-const merge = require('webpack-merge');
-const path = require('path');
+var baseWebpackConfig = require('./webpack.base.config');
+var merge = require('webpack-merge');
+var path = require('path');
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
@@ -9,9 +9,12 @@ function resolve (dir) {
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
   devServer: {
-    port: 8080,
+    host: 'zymfe.com',
+    inline: true,
+    port: 80,
     progress: true,
     contentBase: resolve('dist'),
-    compress: true
+    compress: true,
+    disableHostCheck: true
   }
 });

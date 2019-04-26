@@ -1,16 +1,16 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
 }
 
 module.exports = {
-  entry: resolve('src/paysuccess/1/index.js'),
+  entry: resolve('src/page/sdk_20190426_v0.0.1.js'),
   output: {
-    filename: 'index.js',
-    path: resolve('dist/paysuccess/1/')
+    filename: 'sdk_20190426_v0.0.1.js',
+    path: resolve('dist/')
   },
   resolve: {
     extensions: ['.js']
@@ -28,13 +28,22 @@ module.exports = {
     rules: [
       {
         test: /\.less$/,
-        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
           'less-loader'
         ]
+      },
+      {
+        test: /\.ejs$/,
+        use: [
+          'ejs-loader'
+        ]
+      },
+      {
+        test: /.(jpg|jpeg|png|gif|svg)$/,
+        use: ['url-loader']
       },
       {
         test: /\.js$/,
@@ -51,12 +60,6 @@ module.exports = {
               ]
             }
           }
-        ]
-      },
-      {
-        test: /\.tpl$/,
-        use: [
-          'ejs-loader'
         ]
       }
     ]
