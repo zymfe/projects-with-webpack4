@@ -11,7 +11,7 @@ module.exports = merge(baseWebpackConfig, {
   devServer: {
     host: 'zymfe.com',
     inline: true,
-    port: 80,
+    port: 8080,
     progress: true,
     contentBase: resolve('dist'),
     compress: true,
