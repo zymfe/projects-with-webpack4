@@ -6,7 +6,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.config.js",
-    "build": "webpack --config build/webpack.prod.config.js"
+    "build": "webpack --config build/webpack.prod.config.js",
+    "server": "node server/index.js",
+    "test-server": "node server/index.js test",
+    "pre-server": "node server/index.js pre",
+    "master-server": "node server/index.js master"
   },
   "author": "https://github.com/zymfe",
   "devDependencies": {

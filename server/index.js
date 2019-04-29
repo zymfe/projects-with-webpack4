@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 
+const mode = process.argv[2];
+if (mode) {
+  console.log(`${mode}-build`);
+}
+
 app.get('/api/user', (req, res) => {
   res.json({
     name: 'zymfe',
