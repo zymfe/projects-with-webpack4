@@ -1,5 +1,8 @@
 import { strToDom } from '../utils/index';
 import 'regenerator-runtime/runtime';
+import $ from 'jquery';
+
+console.log($);
 
 console.log(MODE);
 

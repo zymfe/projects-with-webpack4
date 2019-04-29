@@ -28,6 +28,7 @@ module.exports = {
     })
   ],
   module: {
+    noParse: /jquery/,
     rules: [
       {
         test: /\.less$/,
