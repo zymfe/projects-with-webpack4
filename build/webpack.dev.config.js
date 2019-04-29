@@ -11,14 +11,21 @@ module.exports = merge(baseWebpackConfig, {
   devServer: {
     host: '127.0.0.1',
     inline: false,
-    port: 80,
+    port: 8080,
     progress: true,
     contentBase: resolve('./'),
     compress: true,
     disableHostCheck: true,
     proxy: {
+      '/api': 'http://127.0.0.1:8091',
+      '/app': {
+        target: 'http://127.0.0.1:8091',
+        pathRewrite: {
+          '/app': ''
+        }
+      },
       "/sdk/static": {
-        target: 'http://localhost',
+        target: 'http://127.0.0.1',
         pathRewrite: {'^/sdk/static' : '/static'},
         changeOrigin: true
       }

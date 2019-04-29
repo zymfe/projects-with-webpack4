@@ -3,18 +3,35 @@ import 'regenerator-runtime/runtime';
 
 function getUserInfo () {
   return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      resolve({
-        name: 'zymfe',
-        age: 20
-      });
-    });
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/user', true);
+    xhr.onload = e => {
+      resolve(xhr.response);
+    }
+    xhr.onerror = e => {
+      resolve(e);
+    }
+    xhr.send();
+  });
+}
+
+function getProjectInfo () {
+  return new Promise(function (resolve, reject) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/app/project', true);
+    xhr.onload = e => {
+      resolve(xhr.response);
+    }
+    xhr.send();
   });
 }
 
 window.init = async function () {
   const userInfo = await getUserInfo();
   console.log(userInfo);
+
+  const projectInfo = await getProjectInfo();
+  console.log(projectInfo);
   
   const data = {
     name: 'zym', 
