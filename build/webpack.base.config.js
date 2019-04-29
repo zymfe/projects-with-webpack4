@@ -13,7 +13,10 @@ module.exports = {
     path: resolve('dist/')
   },
   resolve: {
-    extensions: ['.js']
+    alias: {
+      "@": resolve('src')
+    },
+    extensions: ['.js', '.ejs']
   },
   plugins: [
     new HtmlWebpackPlugin({
