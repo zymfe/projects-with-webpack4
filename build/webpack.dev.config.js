@@ -1,6 +1,7 @@
 const baseWebpackConfig = require('./webpack.base.config');
 const merge = require('webpack-merge');
 const path = require('path');
+const webpack = require('webpack');
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
@@ -30,5 +31,10 @@ module.exports = merge(baseWebpackConfig, {
         changeOrigin: true
       }
     }
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      MODE: JSON.stringify('dev')
+    })
+  ]
 });

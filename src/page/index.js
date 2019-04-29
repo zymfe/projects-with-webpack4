@@ -1,6 +1,8 @@
 import { strToDom } from '../utils/index';
 import 'regenerator-runtime/runtime';
 
+console.log(MODE);
+
 function getUserInfo () {
   return new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest();

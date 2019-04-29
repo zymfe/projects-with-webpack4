@@ -26,6 +26,9 @@ module.exports = merge(baseWebpackConfig, {
     new CopyWebpackPlugin([
       { from: resolve('static'), to: resolve('dist/static') }
     ]),
-    new webpack.BannerPlugin('created 2019/04/29 by zhaoyimig')
+    new webpack.BannerPlugin('created 2019/04/29 by zhaoyimig'),
+    new webpack.DefinePlugin({
+      MODE: JSON.stringify('prod')
+    })
   ]
 });
