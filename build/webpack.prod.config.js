@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyjsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 const path = require('path');
 
 function resolve (dir) {
@@ -24,6 +25,7 @@ module.exports = merge(baseWebpackConfig, {
   plugins: [
     new CopyWebpackPlugin([
       { from: resolve('static'), to: resolve('dist/static') }
-    ])
+    ]),
+    new webpack.BannerPlugin('created 2019/04/29 by zhaoyimig')
   ]
 });
