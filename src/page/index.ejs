@@ -1,23 +1,18 @@
 <div class="ui-container">
   <style type="text/css">
-    .container {
-      font-size: 30px; 
-      background-color: red; 
-      color: blue;
-    }
+    .container {}
   </style>
   
-  <div class="container">
-    <img src="/static/images/logo.jpg" width="400" height="100">
-    <div class="box">
-      <div>名字：<%= name %></div>
-      <div>年龄：<%= age %></div>
-      <div>
-        技能：
-        <% for (var i = 0; i < skill.length; i += 1){ %>
-          <%= skill[i] %>
-        <% } %>
-      </div>
+  <img src="/static/images/logo.jpg" class="logo">
+  
+  <div class="box">
+    <div>名字：<%= name %></div>
+    <div>年龄：<%= age %></div>
+    <div>
+      技能：
+      <% for (var i = 0; i < skill.length; i += 1){ %>
+        <%= skill[i] %>
+      <% } %>
     </div>
-  </div>  
+  </div>
 </div>

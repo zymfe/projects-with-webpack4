@@ -1,3 +1,5 @@
+require('./index.less');
+
 import { strToDom } from '../utils/index';
 import 'regenerator-runtime/runtime';
 import $ from 'jquery';
