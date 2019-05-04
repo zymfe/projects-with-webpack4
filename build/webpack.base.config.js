@@ -1,13 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
 }
 
 module.exports = {
-  entry: resolve('src/page/index.js'),
+  entry: resolve('src/main.js'),
   output: {
     filename: 'index.js',
     path: resolve('dist/')
@@ -16,7 +17,7 @@ module.exports = {
     alias: {
       "@": resolve('src')
     },
-    extensions: ['.js', '.ejs']
+    extensions: ['.js', '.vue', '.ejs']
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -25,7 +26,9 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'main.css'
-    })
+    }),
+    // https://vue-loader.vuejs.org/zh/migrating.html#loader-%E6%8E%A8%E5%AF%BC
+    new VueLoaderPlugin()
   ],
   module: {
     noParse: /jquery/,
@@ -48,6 +51,11 @@ module.exports = {
       {
         test: /.(jpg|jpeg|png|gif|svg)$/,
         use: ['url-loader']
+      },
+      {
+        test: /\.vue$/,
+        use: ['vue-loader'],
+        exclude: /node_modules/
       },
       {
         test: /\.js$/,
