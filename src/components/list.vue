@@ -1,6 +1,6 @@
 <template>
-  <div class="app-container">
-    <router-view></router-view>
+  <div>
+    {{msg}}
   </div>
 </template>
 
@@ -8,14 +8,12 @@
   export default {
     data () {
       return {
-        
+        msg: 'this is list page'
       }
     }
   }
 </script>
 
 <style lang="less" scoped>
-  .app-container {
-    font-size: 30px;
-  }
+
 </style>

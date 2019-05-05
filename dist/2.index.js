@@ -1,0 +1,2 @@
+/*! created 2019/04/29 by zhaoyimig */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{11:function(t,n,e){"use strict";e.r(n);function s(){var t=this,n=t.$createElement;return(t._self._c||n)("div",[t._v("\n  "+t._s(t.msg)+"\n")])}s._withStripped=!0;var i={data:function(){return{msg:"this is list page"}}},o=e(3),r=Object(o.a)(i,s,[],!1,null,"227179ae",null);r.options.__file="src/components/list.vue";n.default=r.exports}}]);

@@ -16,6 +16,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.4.3",
     "autoprefixer": "^9.5.1",
     "babel-loader": "^8.0.5",
@@ -46,6 +47,11 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "vue": "^2.6.10"
+    "connect-history-api-fallback": "^1.6.0",
+    "install": "^0.12.2",
+    "npm": "^6.9.0",
+    "vue": "^2.6.10",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.0.6"
   }
 }

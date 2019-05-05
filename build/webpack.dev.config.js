@@ -17,6 +17,7 @@ module.exports = merge(baseWebpackConfig, {
     contentBase: resolve('./'),
     compress: true,
     disableHostCheck: true,
+    historyApiFallback: true,
     proxy: {
       '/api': 'http://127.0.0.1:8091',
       '/app': {
