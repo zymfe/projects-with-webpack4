@@ -7,6 +7,7 @@ const indexPage = () => import('@/components/index');
 const listPage = () => import('@/components/list');
 
 export default new Router({
+  // https://router.vuejs.org/zh/guide/essentials/history-mode.html
   mode: 'history',
   routes: [
     {
