@@ -15,7 +15,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "@": resolve('src')
+      "@": resolve('src'),
+      "static": resolve('static')
     },
     extensions: ['.js', '.vue', '.ejs']
   },

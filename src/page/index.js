@@ -4,11 +4,11 @@ import { strToDom } from '../utils/index';
 import 'regenerator-runtime/runtime';
 import $ from 'jquery';
 
-const cookie = require('../../static/js/cookie.js');
+const cookie = require('static/js/cookie.js');
 cookie.set({
   name: 'uname',
   value: 'zymfe',
-  expires: 360000,
+  expires: 5000,
   path: '/',
   domain: '127.0.0.1'
 });
