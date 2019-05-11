@@ -36,7 +36,8 @@ module.exports = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      MODE: JSON.stringify('dev')
+      MODE: JSON.stringify('dev'),
+      ENV: '"development"'
     })
   ]
 });

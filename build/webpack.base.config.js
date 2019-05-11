@@ -8,7 +8,7 @@ function resolve (dir) {
 }
 
 module.exports = {
-  entry: resolve('src/main.js'),
+  entry: resolve('src/page/index.js'),
   output: {
     filename: 'index.js',
     path: resolve('dist/')
