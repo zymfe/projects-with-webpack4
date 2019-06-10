@@ -8,9 +8,10 @@ function resolve (dir) {
 }
 
 module.exports = {
-  entry: resolve('src/page/index.js'),
+  // entry: resolve('src/page/index.js'),
+  entry: resolve('src/main.js'),
   output: {
-    filename: 'index.js',
+    filename: '[name].js',
     path: resolve('dist/')
   },
   resolve: {
@@ -18,7 +19,7 @@ module.exports = {
       "@": resolve('src'),
       "static": resolve('static')
     },
-    extensions: ['.js', '.vue', '.ejs']
+    extensions: ['.js', '.vue', '.ejs', '.css']
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -44,6 +45,13 @@ module.exports = {
         ]
       },
       {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      },
+      {
         test: /\.ejs$/,
         use: [
           'ejs-loader'
@@ -54,9 +62,28 @@ module.exports = {
         use: ['url-loader']
       },
       {
+        test:/\.(woff|woff2|eot|ttf|otf)$/,
+        use:[{
+          loader:'file-loader',
+          options:{
+            name:'img/[name].[hash:8].[ext]'
+          }
+        }]
+      },
+      {
         test: /\.vue$/,
-        use: ['vue-loader'],
-        exclude: /node_modules/
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {}
+          },
+          {
+            loader: 'iview-loader',
+            options: {
+              prefix: false
+            }
+          }
+        ]
       },
       {
         test: /\.js$/,
@@ -70,7 +97,13 @@ module.exports = {
               ],
               plugins: [
                 '@babel/plugin-proposal-class-properties',
-                '@babel/plugin-syntax-dynamic-import'
+                '@babel/plugin-syntax-dynamic-import',
+                ["import", {
+                  "libraryName": "iview",
+                  "libraryDirectory": "src/components",
+                  "css": true
+                  }
+                ]
               ]
             }
           }

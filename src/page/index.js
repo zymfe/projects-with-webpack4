@@ -15,8 +15,8 @@ cookie.set({
 
 console.log($);
 
-console.log('MODE: ', MODE);
-console.log('ENV: ', ENV);
+// console.log('MODE: ', MODE);
+// console.log('ENV: ', ENV);
 
 function getUserInfo () {
   return new Promise(function (resolve, reject) {
