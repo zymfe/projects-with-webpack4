@@ -12578,7 +12578,6 @@ var listPage = function listPage() {
 
 /* harmony default export */ var router = (new vue_router_esm({
   // https://router.vuejs.org/zh/guide/essentials/history-mode.html
-  mode: 'history',
   routes: [{
     path: '/',
     redirect: '/index'
