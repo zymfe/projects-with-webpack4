@@ -1,18 +1,22 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const {
+  VueLoaderPlugin
+} = require('vue-loader')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '../', dir);
 }
 
 module.exports = {
-  // entry: resolve('src/page/index.js'),
   entry: resolve('src/main.js'),
   output: {
-    filename: '[name].js',
-    path: resolve('dist/')
+    filename: 'static/js/[name].js',
+    path: resolve('dist/'),
+    publicPath: process.env.NODE_ENV === 'production' ?
+      '/vue-admin/' :
+      '/'
   },
   resolve: {
     alias: {
@@ -24,20 +28,33 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
-      filename: 'index.html'
+      filename: 'index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyCSS: true,
+        minifyJS: true,
+        minifyURLs: true
+      }
     }),
     new MiniCssExtractPlugin({
-      filename: 'main.css'
+      filename: 'static/css/[name].[contenthash:8].css',
+      chunkFilename: 'css/app.[contenthash:8].css'
     }),
     // https://vue-loader.vuejs.org/zh/migrating.html#loader-%E6%8E%A8%E5%AF%BC
     new VueLoaderPlugin()
   ],
   module: {
     noParse: /jquery/,
-    rules: [
-      {
+    rules: [{
         test: /\.less$/,
         use: [
+          'style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
@@ -52,30 +69,25 @@ module.exports = {
         ]
       },
       {
-        test: /\.ejs$/,
-        use: [
-          'ejs-loader'
-        ]
-      },
-      {
         test: /.(jpg|jpeg|png|gif|svg)$/,
         use: ['url-loader']
       },
       {
-        test:/\.(woff|woff2|eot|ttf|otf)$/,
-        use:[{
-          loader:'file-loader',
-          options:{
-            name:'img/[name].[hash:8].[ext]'
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: 'img/[name].[hash:8].[ext]'
           }
         }]
       },
       {
         test: /\.vue$/,
-        use: [
-          {
+        use: [{
             loader: 'vue-loader',
-            options: {}
+            options: {
+              extractCSS: true
+            }
           },
           {
             loader: 'iview-loader',
@@ -87,27 +99,25 @@ module.exports = {
       },
       {
         test: /\.js$/,
+        include: [resolve('static'), resolve('src')],
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                '@babel/preset-env'
-              ],
-              plugins: [
-                '@babel/plugin-proposal-class-properties',
-                '@babel/plugin-syntax-dynamic-import',
-                ["import", {
-                  "libraryName": "iview",
-                  "libraryDirectory": "src/components",
-                  "css": true
-                  }
-                ]
-              ]
-            }
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env'
+            ],
+            plugins: [ 
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-syntax-dynamic-import',
+              '@babel/plugin-transform-runtime',
+              ["import", {
+                "libraryName": "iview",
+                "libraryDirectory": "src/components"
+              }]
+            ]
           }
-        ]
+        }]
       }
     ]
   }

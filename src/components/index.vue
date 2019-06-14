@@ -2,7 +2,7 @@
   <div>
     <img src="/static/images/logo.jpg" >
     <div>姓名：{{uname}}</div>
-    <div>年龄：{{age}}</div>
+    <div v-if="skills.includes('js')">年龄：{{age}}</div>
     <Button type="primary" @click="toListPage">去列表页</Button>
   </div>
 </template>
@@ -12,27 +12,19 @@
     data () {
       return {
         uname: 'zhaoyiming',
-        age: 18
+        age: 18,
+        skills: ['html', 'css', 'js']
       }
     },
 
     created () {
-      this.getUserInfo();
+      console.log(this.skills.indexOf('css'));
     },
 
     methods: {
       toListPage () {
         this.$router.push({
           name: 'List'
-        });
-      },
-
-      getUserInfo () {
-        // 需 npm run server
-        this.$http.get('/api/user').then(res => {
-          console.log(res);
-        }, err => {
-          console.log(err);
         });
       }
     }

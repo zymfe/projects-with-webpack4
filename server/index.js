@@ -13,7 +13,7 @@ app.get('/api/user', (req, res) => {
   });
 });
 
-app.get('/project', (req, res) => {
+app.get('/api/project', (req, res) => {
   res.json({
     name: 'test-webpack4'
   });

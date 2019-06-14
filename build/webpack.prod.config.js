@@ -1,18 +1,13 @@
+process.env.NODE_ENV = 'production';
+
 const baseWebpackConfig = require('./webpack.base.config');
 const merge = require('webpack-merge');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const UglifyjsPlugin = require('uglifyjs-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('_clean-webpack-plugin@3.0.0@clean-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
-
-function resolve (dir) {
-  return path.join(__dirname, '../', dir);
-}
-
-console.log(CleanWebpackPlugin);
+const UglifyjsPlugin = require('uglifyjs-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
@@ -23,21 +18,10 @@ module.exports = merge(baseWebpackConfig, {
       //   parallel: true,
       //   sourceMap: true
       // }),
-      new OptimizeCssAssetsPlugin(),
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: false, // Must be set to true if using source-maps in production
-        terserOptions: {
-          // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
-        }
-      })
+      new OptimizeCssAssetsPlugin()
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([
-      { from: resolve('static'), to: resolve('dist/static-copy') }
-    ]),
     new webpack.BannerPlugin('created 2019/04/29 by zhaoyimig'),
     new webpack.DefinePlugin({
       MODE: JSON.stringify('prod')
@@ -45,6 +29,13 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.optimize.MinChunkSizePlugin({
       minChunkSize: 100 // Minimum number of characters
     }),
-    new CleanWebpackPlugin({})
+    new CleanWebpackPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: 'static',
+        ignore: ['.*']
+      }
+    ])
   ]
 });
