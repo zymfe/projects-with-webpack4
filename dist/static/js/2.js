@@ -7,12 +7,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/_vue-loader@15.7.0@vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/_vue-loader@15.7.0@vue-loader/lib??vue-loader-options!./node_modules/_iview-loader@1.2.2@iview-loader??ref--4-1!./src/components/index.vue?vue&type=template&id=13416b0e&scoped=true&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('img',{attrs:{"src":"/static/images/logo.jpg"}}),_vm._v(" "),_c('div',[_vm._v("姓名："+_vm._s(_vm.uname))]),_vm._v(" "),(_vm.skills.includes('js'))?_c('div',[_vm._v("年龄："+_vm._s(_vm.age))]):_vm._e(),_vm._v(" "),_c('Button',{attrs:{"type":"primary"},on:{"click":_vm.toListPage}},[_vm._v("去列表页")])],1)}
+// CONCATENATED MODULE: ./node_modules/_vue-loader@15.7.0@vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/_vue-loader@15.7.0@vue-loader/lib??vue-loader-options!./node_modules/_iview-loader@1.2.2@iview-loader??ref--4-1!./src/components/index.vue?vue&type=template&id=2560a6f2&scoped=true&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('img',{attrs:{"src":"static/images/logo.jpg"}}),_vm._v(" "),_c('div',[_vm._v("姓名："+_vm._s(_vm.uname))]),_vm._v(" "),(_vm.skills.includes('js'))?_c('div',[_vm._v("年龄："+_vm._s(_vm.age))]):_vm._e(),_vm._v(" "),_c('Button',{attrs:{"type":"primary"},on:{"click":_vm.toListPage}},[_vm._v("去列表页")])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/index.vue?vue&type=template&id=13416b0e&scoped=true&
+// CONCATENATED MODULE: ./src/components/index.vue?vue&type=template&id=2560a6f2&scoped=true&
 
 // CONCATENATED MODULE: ./node_modules/_babel-loader@8.0.6@babel-loader/lib??ref--5-0!./node_modules/_vue-loader@15.7.0@vue-loader/lib??vue-loader-options!./node_modules/_iview-loader@1.2.2@iview-loader??ref--4-1!./src/components/index.vue?vue&type=script&scoped=true&lang=js&
 //
@@ -62,7 +62,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   null,
-  "13416b0e",
+  "2560a6f2",
   null
   
 )

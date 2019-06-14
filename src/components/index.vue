@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/static/images/logo.jpg" >
+    <img src="static/images/logo.jpg" >
     <div>姓名：{{uname}}</div>
     <div v-if="skills.includes('js')">年龄：{{age}}</div>
     <Button type="primary" @click="toListPage">去列表页</Button>
