@@ -18,11 +18,11 @@ module.exports = merge(baseWebpackConfig, {
   mode: 'production',
   optimization: {
     minimizer: [
-      // new UglifyjsPlugin({
-      //   cache: true,
-      //   parallel: true,
-      //   sourceMap: true
-      // }),
+      new UglifyjsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
       new OptimizeCssAssetsPlugin(),
       new TerserPlugin({
         cache: true,

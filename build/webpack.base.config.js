@@ -1,15 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
 }
 
 module.exports = {
-  // entry: resolve('src/page/index.js'),
-  entry: resolve('src/main.js'),
+  entry: resolve('src/page/index.js'),
   output: {
     filename: '[name].js',
     path: resolve('dist/')
@@ -19,7 +17,7 @@ module.exports = {
       "@": resolve('src'),
       "static": resolve('static')
     },
-    extensions: ['.js', '.vue', '.ejs', '.css']
+    extensions: ['.js', '.ejs', '.css']
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -29,8 +27,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'main.css'
     }),
-    // https://vue-loader.vuejs.org/zh/migrating.html#loader-%E6%8E%A8%E5%AF%BC
-    new VueLoaderPlugin()
   ],
   module: {
     noParse: /jquery/,
@@ -71,21 +67,6 @@ module.exports = {
         }]
       },
       {
-        test: /\.vue$/,
-        use: [
-          {
-            loader: 'vue-loader',
-            options: {}
-          },
-          {
-            loader: 'iview-loader',
-            options: {
-              prefix: false
-            }
-          }
-        ]
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
@@ -98,12 +79,7 @@ module.exports = {
               plugins: [
                 '@babel/plugin-proposal-class-properties',
                 '@babel/plugin-syntax-dynamic-import',
-                ["import", {
-                  "libraryName": "iview",
-                  "libraryDirectory": "src/components",
-                  "css": true
-                  }
-                ]
+                '@babel/plugin-transform-runtime',
               ]
             }
           }
