@@ -1,8 +1,10 @@
+const path = require('path');
+const fs = require('fs');
 const baseWebpackConfig = require('./webpack.base.config');
 const merge = require('webpack-merge');
-const path = require('path');
 const webpack = require('webpack');
-const fs = require('fs');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const devConfig = require('../config/index').dev;
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
@@ -11,13 +13,16 @@ function resolve (dir) {
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
   devServer: {
-    host: '127.0.0.1',
+    host: devConfig.host,
+    port: devConfig.port,
     inline: false,
-    port: 8080,
     progress: true,
     contentBase: resolve('./'),
     compress: true,
     disableHostCheck: true,
+    open: true,
+    openPage: '../',
+    index: 'index.html',
     // https: {
     //   key: fs.readFileSync(resolve('./build/ssl/key.pem')),
     //   cert: fs.readFileSync(resolve('./build/ssl/crt.pem'))
@@ -40,6 +45,10 @@ module.exports = merge(baseWebpackConfig, {
     }
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      filename: 'index.html'
+    }),
     new webpack.DefinePlugin({
       MODE: JSON.stringify('dev'),
       ENV: '"development"'
