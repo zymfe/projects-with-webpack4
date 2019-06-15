@@ -44,7 +44,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:8].css',
-      chunkFilename: 'css/app.[contenthash:8].css'
+      chunkFilename: 'static/css/[name].[contenthash:8].css'
     }),
     // https://vue-loader.vuejs.org/zh/migrating.html#loader-%E6%8E%A8%E5%AF%BC
     new VueLoaderPlugin()
@@ -54,7 +54,6 @@ module.exports = {
     rules: [{
         test: /\.less$/,
         use: [
-          'style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
@@ -64,7 +63,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader'
         ]
       },
@@ -111,9 +110,9 @@ module.exports = {
               '@babel/plugin-proposal-class-properties',
               '@babel/plugin-syntax-dynamic-import',
               '@babel/plugin-transform-runtime',
-              ["import", {
-                "libraryName": "iview",
-                "libraryDirectory": "src/components"
+              ["component", {
+                "libraryName": "element-ui",
+                "styleLibraryName": "theme-chalk"
               }]
             ]
           }

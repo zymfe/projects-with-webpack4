@@ -8,18 +8,35 @@ const webpack = require('webpack');
 const path = require('path');
 const UglifyjsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
   optimization: {
     minimizer: [
-      // new UglifyjsPlugin({
-      //   cache: true,
-      //   parallel: true,
-      //   sourceMap: true
-      // }),
+      new UglifyjsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
       new OptimizeCssAssetsPlugin()
-    ]
+    ],
+    splitChunks: {
+      cacheGroups: {
+        "vender": {
+          test: /vue|vue-router|vue-resource/,
+          chunks: 'initial',
+          name: 'vendor',
+          enforce: true
+        },
+        "vender-element": {
+          test: /element-ui/,
+          chunks: 'initial',
+          name: 'vender-element',
+          enforce: true
+        }
+      }
+    }
   },
   plugins: [
     new webpack.BannerPlugin('created 2019/04/29 by zhaoyimig'),
@@ -36,6 +53,7 @@ module.exports = merge(baseWebpackConfig, {
         to: 'static',
         ignore: ['.*']
       }
-    ])
+    ]),
+    new BundleAnalyzerPlugin()
   ]
 });
