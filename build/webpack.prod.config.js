@@ -5,14 +5,18 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyjsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const webpack = require('webpack');
 const path = require('path');
+const buildConfig = require('../config/index').build;
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
 }
 
-console.log(CleanWebpackPlugin);
+const fillZero = num => num >= 10 ? num : ('0'+num);
+const date = new Date();
+const time =  date.getFullYear() + '/' + (fillZero(date.getMonth() + 1)) + '/' + fillZero(date.getDate());
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
@@ -21,30 +25,29 @@ module.exports = merge(baseWebpackConfig, {
       new UglifyjsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true
-      }),
-      new OptimizeCssAssetsPlugin(),
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: false, // Must be set to true if using source-maps in production
-        terserOptions: {
-          // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+        sourceMap: false,
+        uglifyOptions: {
+          compress: {
+            drop_console: true
+          }
         }
-      })
+      }),
+      new OptimizeCssAssetsPlugin()
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
-      { from: resolve('static'), to: resolve('dist/static-copy') }
+      { 
+        from: resolve(__dirname, 'static'),
+        to: buildConfig.assetsSubDirectory,
+        ignore: ['.*']
+      }
     ]),
-    new webpack.BannerPlugin('created 2019/04/29 by zhaoyimig'),
-    new webpack.DefinePlugin({
-      MODE: JSON.stringify('prod')
-    }),
+    new webpack.BannerPlugin(`created ${time} by zhaoyimig`),
     new webpack.optimize.MinChunkSizePlugin({
-      minChunkSize: 100 // Minimum number of characters
+      minChunkSize: 100
     }),
-    new CleanWebpackPlugin({})
+    new ManifestPlugin()
   ]
 });

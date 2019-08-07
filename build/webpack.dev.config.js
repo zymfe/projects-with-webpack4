@@ -1,8 +1,8 @@
 const baseWebpackConfig = require('./webpack.base.config');
 const merge = require('webpack-merge');
 const path = require('path');
-const webpack = require('webpack');
 const fs = require('fs');
+const devConfig = require('../config/index').dev;
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
@@ -11,9 +11,9 @@ function resolve (dir) {
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
   devServer: {
-    host: '127.0.0.1',
+    host: devConfig.host,
     inline: false,
-    port: 8080,
+    port: devConfig.port,
     progress: true,
     contentBase: resolve('./'),
     compress: true,
@@ -38,11 +38,5 @@ module.exports = merge(baseWebpackConfig, {
         changeOrigin: true
       }
     }
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      MODE: JSON.stringify('dev'),
-      ENV: '"development"'
-    })
-  ]
+  }
 });

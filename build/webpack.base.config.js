@@ -1,15 +1,23 @@
+/**
+ * webpack 公共配置
+ * @author zhaoyiming
+ * @since  2019/08/07
+ */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
 }
 
 module.exports = {
-  entry: resolve('src/page/index.js'),
+  entry: resolve('src/main.js'),
   output: {
-    filename: '[name].js',
+    filename: 'static/js/[name].[hash:8].js',
     path: resolve('dist/')
   },
   resolve: {
@@ -17,20 +25,56 @@ module.exports = {
       "@": resolve('src'),
       "static": resolve('static')
     },
-    extensions: ['.js', '.ejs', '.css']
+    extensions: ['.js', '.vue', '.css']
+  },
+  externals: {
+    'vue': 'Vue',
+    'vue-router': 'VueRouter'
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'static/css/[name].[contenthash:8].css',
+      chunkFilename: 'static/css/[name].[contenthash:8].css'
+    }),
+    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',
-      filename: 'index.html'
+      filename: 'index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyCSS: true,
+        minifyJS: true,
+        minifyURLs: true
+      },
+      var: {
+        isProd: process.env.npm_lifecycle_event === 'build'
+      },
+      //inlineSource: '.main.*.js',
     }),
-    new MiniCssExtractPlugin({
-      filename: 'main.css'
-    }),
+    //new HtmlWebpackInlineSourcePlugin(),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
+    })
   ],
   module: {
-    noParse: /jquery/,
     rules: [
+      {
+        test: /\.vue$/,
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              extractCSS: true
+            }
+          }
+        ]
+      },
       {
         test: /\.less$/,
         use: [
@@ -45,12 +89,6 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader'
-        ]
-      },
-      {
-        test: /\.ejs$/,
-        use: [
-          'ejs-loader'
         ]
       },
       {
