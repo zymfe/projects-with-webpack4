@@ -1,5 +1,6 @@
 export default {
   mode: 'history',
+  base: 'webpack4-vue-mobile',
   routes: [
     {
       path: '/',
