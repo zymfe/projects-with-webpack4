@@ -33,7 +33,16 @@ module.exports = merge(baseWebpackConfig, {
         }
       }),
       new OptimizeCssAssetsPlugin()
-    ]
+    ],
+    splitChunks: {
+      cacheGroups: {
+        "vender": {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor'
+        }
+      }
+    }
   },
   plugins: [
     new CleanWebpackPlugin(),

@@ -1,11 +1,12 @@
 {
   "main.css": "static/css/main.01fad4b1.css",
-  "main.js": "static/js/main.58ead156.js",
-  "static/css/1.dc96d8bf.css": "static/css/1.dc96d8bf.css",
-  "static/js/1.58ead156.js": "static/js/1.58ead156.js",
-  "static/css/2.67b8f6fc.css": "static/css/2.67b8f6fc.css",
-  "static/js/2.58ead156.js": "static/js/2.58ead156.js",
-  "static/css/3.32de164f.css": "static/css/3.32de164f.css",
-  "static/js/3.58ead156.js": "static/js/3.58ead156.js",
+  "main.js": "static/js/main.041ffe9a.js",
+  "vendor.js": "static/js/vendor.041ffe9a.js",
+  "static/css/2.dc96d8bf.css": "static/css/2.dc96d8bf.css",
+  "static/js/2.041ffe9a.js": "static/js/2.041ffe9a.js",
+  "static/css/3.67b8f6fc.css": "static/css/3.67b8f6fc.css",
+  "static/js/3.041ffe9a.js": "static/js/3.041ffe9a.js",
+  "static/css/4.32de164f.css": "static/css/4.32de164f.css",
+  "static/js/4.041ffe9a.js": "static/js/4.041ffe9a.js",
   "index.html": "index.html"
 }
