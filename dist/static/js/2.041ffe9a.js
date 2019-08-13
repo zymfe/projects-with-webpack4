@@ -1,2 +1,2 @@
-/*! created 2019/08/08 by zhaoyimig */
+/*! created 2019/08/13 by zhaoyiming */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[2],{35:function(t,e,i){},38:function(t,e,i){"use strict";var a=i(35);i.n(a).a},39:function(t,e,i){"use strict";i.r(e);function a(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{staticClass:"detail-container"},[i("div",{staticClass:"article"},[t._v(t._s(t.articleName))])])}a._withStripped=!0;var n={data:function(){return{articleName:""}},created:function(){this.articleName=this.$route.query.name}},c=(i(38),i(4)),r=Object(c.a)(n,a,[],!1,null,"98596bd0",null);r.options.__file="src/pages/detail/index.vue";e.default=r.exports}}]);

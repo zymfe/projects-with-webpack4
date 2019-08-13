@@ -1,2 +1,2 @@
-/*! created 2019/08/08 by zhaoyimig */
+/*! created 2019/08/13 by zhaoyiming */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[3],{33:function(t,e,i){},36:function(t,e,i){"use strict";var n=i(33);i.n(n).a},40:function(t,e,i){"use strict";i.r(e);function n(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{staticClass:"home-container"},[i("h1",[t._v("Home")]),t._v(" "),i("div",{staticClass:"to-listpage",on:{click:t.toListPage}},[t._v("去列表页")])])}n._withStripped=!0;var s={data:function(){return{}},methods:{toListPage:function(){this.$router.push({path:"/list"})}}},o=(i(36),i(4)),a=Object(o.a)(s,n,[],!1,null,"5b685826",null);a.options.__file="src/pages/home/index.vue";e.default=a.exports}}]);

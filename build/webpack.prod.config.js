@@ -53,7 +53,7 @@ module.exports = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-    new webpack.BannerPlugin(`created ${time} by zhaoyimig`),
+    new webpack.BannerPlugin(`created ${time} by zhaoyiming`),
     new webpack.optimize.MinChunkSizePlugin({
       minChunkSize: 100
     }),
