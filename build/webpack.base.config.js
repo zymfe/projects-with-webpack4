@@ -55,9 +55,9 @@ module.exports = {
       var: {
         isProd: process.env.npm_lifecycle_event === 'build'
       },
-      //inlineSource: '.main.*.js',
+      inlineSource: '.main.*.(css|js)',
     }),
-    //new HtmlWebpackInlineSourcePlugin(),
+    new HtmlWebpackInlineSourcePlugin(),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
     })
