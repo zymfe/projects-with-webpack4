@@ -12,10 +12,11 @@ module.exports = merge(baseWebpackConfig, {
   mode: 'development',
   devServer: {
     host: devConfig.host,
-    inline: false,
+    inline: true,
     port: devConfig.port,
+    open: true,
     progress: true,
-    contentBase: resolve('./'),
+    contentBase: resolve('dist'),
     compress: true,
     disableHostCheck: true,
     // https: {
@@ -25,17 +26,12 @@ module.exports = merge(baseWebpackConfig, {
     // https://www.webpackjs.com/configuration/dev-server/#devserver-historyapifallback
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://127.0.0.1:8091',
-      '/app': {
-        target: 'http://127.0.0.1:8091',
-        pathRewrite: {
-          '/app': ''
-        }
-      },
-      "/sdk/static": {
-        target: 'http://127.0.0.1',
-        pathRewrite: {'^/sdk/static' : '/static'},
-        changeOrigin: true
+      '/webpack4-vue-mobile/': {
+        target: 'http://localhost:8080',  // 接口的域名
+        secure: false,                    // 如果是https接口，需要配置这个参数
+        changeOrigin: true,               // 如果接口跨域，需要进行这个参数配置
+        pathRewrite: {"^/webpack4-vue-mobile/" : "/"},
+        proxyTimeout: 1000 * 10
       }
     }
   }
